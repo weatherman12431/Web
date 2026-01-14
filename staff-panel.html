@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Panel - Razorback Storm Chasing</title>
+    <link rel="stylesheet" href="staff-panel.css">
+</head>
+<body>
+    <div class="staff-container">
+        <header class="staff-header">
+            <h1>🌪️ Razorback Storm Chasing - Staff Panel</h1>
+            <div class="header-actions">
+                <div class="user-info">
+                    <div class="user-avatar">A</div>
+                    <span>Admin</span>
+                </div>
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <div class="staff-content">
+            <aside class="sidebar">
+                <nav class="staff-nav">
+                    <button class="nav-btn active" data-section="dashboard">
+                        <span>📊</span> Dashboard
+                    </button>
+                    <button class="nav-btn" data-section="chases">
+                        <span>🚗</span> Manage Chases
+                    </button>
+                    <button class="nav-btn" data-section="bookings">
+                        <span>📅</span> Bookings
+                    </button>
+                    <button class="nav-btn" data-section="gallery">
+                        <span>🖼️</span> Gallery Manager
+                    </button>
+                    <button class="nav-btn" data-section="blog">
+                        <span>📝</span> Blog Posts
+                    </button>
+                    <button class="nav-btn" data-section="messages">
+                        <span>✉️</span> Messages
+                    </button>
+                    <button class="nav-btn" data-section="settings">
+                        <span>⚙️</span> Settings
+                    </button>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <h2>📊 Dashboard Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-info">
+                                <h3>Total Bookings</h3>
+                                <p class="stat-number">24</p>
+                                <p class="stat-change">↑ 12% from last month</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🌪️</div>
+                            <div class="stat-info">
+                                <h3>Active Chases</h3>
+                                <p class="stat-number">3</p>
+                                <p class="stat-change">2 scheduled this week</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✉️</div>
+                            <div class="stat-info">
+                                <h3>New Messages</h3>
+                                <p class="stat-number">12</p>
+                                <p class="stat-change">5 unread</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📸</div>
+                            <div class="stat-info">
+                                <h3>Gallery Items</h3>
+                                <p class="stat-number">156</p>
+                                <p class="stat-change">↑ 8 new this week</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>📋 Recent Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <span class="activity-time">2 hours ago</span>
+                                <p>🆕 New booking request from John Smith for May 15 chase</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">5 hours ago</span>
+                                <p>📅 Chase scheduled for May 15, 2026 in Oklahoma City</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">1 day ago</span>
+                                <p>📝 New blog post published: "Tornado Safety Tips"</p>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">2 days ago</span>
+                                <p>📸 8 new images added to gallery from Texas chase</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Manage Chases Section -->
+                <section id="chases" class="content-section">
+                    <h2>🚗 Manage Storm Chases</h2>
+                    <input type="text" class="search-bar" placeholder="🔍 Search chases...">
+                    <button class="btn-primary">+ Add New Chase</button>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Participants</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>May 15, 2026</td>
+                                    <td>Oklahoma City, OK</td>
+                                    <td><span class="badge badge-active">Active</span></td>
+                                    <td>8</td>
+                                    <td>
+                                        <button class="btn-small">Edit</button>
+                                        <button class="btn-small btn-danger">Cancel</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>May 20, 2026</td>
+                                    <td>Wichita, KS</td>
+                                    <td><span class="badge badge-scheduled">Scheduled</span></td>
+                                    <td>6</td>
+                                    <td>
+                                        <button class="btn-small">Edit</button>
+                                        <button class="btn-small btn-danger">Cancel</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>May 25, 2026</td>
+                                    <td>Amarillo, TX</td>
+                                    <td><span class="badge badge-scheduled">Scheduled</span></td>
+                                    <td>10</td>
+                                    <td>
+                                        <button class="btn-small">Edit</button>
+                                        <button class="btn-small btn-danger">Cancel</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Bookings Section -->
+                <section id="bookings" class="content-section">
+                    <h2>📅 Customer Bookings</h2>
+                    <input type="text" class="search-bar" placeholder="🔍 Search bookings...">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Chase Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Smith</td>
+                                    <td>john@email.com</td>
+                                    <td>May 15, 2026</td>
+                                    <td><span class="badge badge-pending">Pending</span></td>
+                                    <td>
+                                        <button class="btn-small">Approve</button>
+                                        <button class="btn-small btn-danger">Decline</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Johnson</td>
+                                    <td>sarah@email.com</td>
+                                    <td>May 20, 2026</td>
+                                    <td><span class="badge badge-confirmed">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn-small">View</button>
+                                        <button class="btn-small btn-danger">Cancel</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Gallery Manager Section -->
+                <section id="gallery" class="content-section">
+                    <h2>🖼️ Gallery Manager</h2>
+                    <input type="text" class="search-bar" id="gallerySearch" placeholder="🔍 Search images...">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                        <button class="btn-primary" id="addImageBtn">+ Add Image URL</button>
+                        <button class="btn-primary" id="uploadImageBtn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">📁 Upload from Computer</button>
+                    </div>
+                    <input type="file" id="imageFileInput" accept="image/*" multiple style="display: none;">
+                    <div class="gallery-grid" id="adminGalleryGrid">
+                        <!-- Gallery items will be loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Blog Posts Section -->
+                <section id="blog" class="content-section">
+                    <h2>📝 Blog Posts Manager</h2>
+                    <input type="text" class="search-bar" id="blogSearch" placeholder="🔍 Search blog posts...">
+                    <button class="btn-primary" id="addBlogBtn">+ Create New Post</button>
+                    <div class="blog-list" id="adminBlogList">
+                        <!-- Blog posts will be loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Messages Section -->
+                <section id="messages" class="content-section">
+                    <h2>✉️ Customer Messages</h2>
+                    <input type="text" class="search-bar" placeholder="🔍 Search messages...">
+                    <div class="messages-list">
+                        <div class="message-item unread">
+                            <div class="message-header">
+                                <strong>Mike Davis</strong>
+                                <span class="message-time">2 hours ago</span>
+                            </div>
+                            <p class="message-subject">Question about May chase</p>
+                            <p class="message-preview">Hi, I'm interested in joining the May 15th chase. Do you still have spots available?</p>
+                            <button class="btn-small">Reply</button>
+                        </div>
+                        <div class="message-item">
+                            <div class="message-header">
+                                <strong>Emily Wilson</strong>
+                                <span class="message-time">1 day ago</span>
+                            </div>
+                            <p class="message-subject">Footage licensing inquiry</p>
+                            <p class="message-preview">I'm working on a documentary and would like to license some of your tornado footage...</p>
+                            <button class="btn-small">Reply</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="content-section">
+                    <h2>⚙️ System Settings</h2>
+                    
+                    <div class="settings-section">
+                        <h3>🖼️ Login Page Background</h3>
+                        <p class="settings-description">Customize the background image for the staff login page</p>
+                        
+                        <div class="background-preview" id="backgroundPreview">
+                            <img id="currentBackground" src="" alt="Current background">
+                            <div class="preview-overlay">Current Background</div>
+                        </div>
+                        
+                        <div class="background-controls">
+                            <button class="btn-primary" id="uploadBackgroundBtn">📁 Upload New Background</button>
+                            <button class="btn-primary" id="useUrlBtn" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">🔗 Use Image URL</button>
+                            <button class="btn-primary btn-danger" id="resetBackgroundBtn">🔄 Reset to Default</button>
+                        </div>
+                        
+                        <input type="file" id="backgroundFileInput" accept="image/*" style="display: none;">
+                        
+                        <div class="background-gallery">
+                            <h4>Quick Select - Storm Backgrounds</h4>
+                            <div class="preset-backgrounds">
+                                <div class="preset-bg" data-url="https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=1920&h=1080&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=300&h=200&fit=crop" alt="Tornado">
+                                    <span>Tornado</span>
+                                </div>
+                                <div class="preset-bg" data-url="https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1920&h=1080&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=300&h=200&fit=crop" alt="Lightning">
+                                    <span>Lightning</span>
+                                </div>
+                                <div class="preset-bg" data-url="https://images.unsplash.com/photo-1561553543-1d1c0b4e0c4d?w=1920&h=1080&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1561553543-1d1c0b4e0c4d?w=300&h=200&fit=crop" alt="Supercell">
+                                    <span>Supercell</span>
+                                </div>
+                                <div class="preset-bg" data-url="https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=1920&h=1080&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=300&h=200&fit=crop" alt="Storm Clouds">
+                                    <span>Storm Clouds</span>
+                                </div>
+                                <div class="preset-bg" data-url="https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1920&h=1080&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=300&h=200&fit=crop" alt="Hail Storm">
+                                    <span>Hail Storm</span>
+                                </div>
+                                <div class="preset-bg" data-url="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&h=1080&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop" alt="Dark Storm">
+                                    <span>Dark Storm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>🔧 General Settings</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Site Title</label>
+                                <input type="text" value="Razorback Storm Chasing" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Email</label>
+                                <input type="email" value="info@razorbackstormchasing.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" value="(555) 123-4567" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Change Staff Password</label>
+                                <input type="password" placeholder="New password" class="form-input">
+                            </div>
+                            <button class="btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="gallery-data.js"></script>
+    <script src="blog-data.js"></script>
+    <script src="staff-panel.js"></script>
+    <script src="auth-check.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login - Razorback Storm Chasing</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-background">
+            <div class="particles" id="particles"></div>
+            <div class="storm-animation"></div>
+            <div class="lightning"></div>
+        </div>
+        
+        <div class="login-box">
+            <div class="login-header">
+                <div class="logo-container">
+                    <div class="logo-glow"></div>
+                    <div class="logo">🌪️</div>
+                </div>
+                <h1>Razorback Storm Chasing</h1>
+                <p>Staff Panel Access</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">
+                        <span class="icon">👤</span>
+                        Username
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Enter your username"
+                            required
+                            autocomplete="username"
+                        >
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">
+                        <span class="icon">🔒</span>
+                        Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <span class="toggle-password" id="togglePassword">👁️</span>
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span>Login to Dashboard</span>
+                    <span class="arrow">→</span>
+                </button>
+                
+                <div class="error-message" id="errorMessage"></div>
+            </form>
+            
+            <div class="login-footer">
+                <a href="index.html" class="back-link">
+                    <span>←</span>
+                    <span>Back to Website</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="login.js"></script>
+</body>
+</html>
