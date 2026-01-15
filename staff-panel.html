@@ -28,6 +28,9 @@
                     <button class="nav-btn" data-section="chases">
                         <span>🚗</span> Manage Chases
                     </button>
+                    <button class="nav-btn" data-section="calendar">
+                        <span>📆</span> Calendar
+                    </button>
                     <button class="nav-btn" data-section="bookings">
                         <span>📅</span> Bookings
                     </button>
@@ -39,6 +42,9 @@
                     </button>
                     <button class="nav-btn" data-section="messages">
                         <span>✉️</span> Messages
+                    </button>
+                    <button class="nav-btn" data-section="users">
+                        <span>👥</span> User Approvals
                     </button>
                     <button class="nav-btn" data-section="settings">
                         <span>⚙️</span> Settings
@@ -111,8 +117,8 @@
                 <!-- Manage Chases Section -->
                 <section id="chases" class="content-section">
                     <h2>🚗 Manage Storm Chases</h2>
-                    <input type="text" class="search-bar" placeholder="🔍 Search chases...">
-                    <button class="btn-primary">+ Add New Chase</button>
+                    <input type="text" class="search-bar" id="chaseSearch" placeholder="🔍 Search chases...">
+                    <button class="btn-primary" id="addChaseBtn">+ Add New Chase</button>
                     <div class="table-container">
                         <table class="data-table">
                             <thead>
@@ -124,46 +130,55 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>May 15, 2026</td>
-                                    <td>Oklahoma City, OK</td>
-                                    <td><span class="badge badge-active">Active</span></td>
-                                    <td>8</td>
-                                    <td>
-                                        <button class="btn-small">Edit</button>
-                                        <button class="btn-small btn-danger">Cancel</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>May 20, 2026</td>
-                                    <td>Wichita, KS</td>
-                                    <td><span class="badge badge-scheduled">Scheduled</span></td>
-                                    <td>6</td>
-                                    <td>
-                                        <button class="btn-small">Edit</button>
-                                        <button class="btn-small btn-danger">Cancel</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>May 25, 2026</td>
-                                    <td>Amarillo, TX</td>
-                                    <td><span class="badge badge-scheduled">Scheduled</span></td>
-                                    <td>10</td>
-                                    <td>
-                                        <button class="btn-small">Edit</button>
-                                        <button class="btn-small btn-danger">Cancel</button>
-                                    </td>
-                                </tr>
+                            <tbody id="chasesTableBody">
+                                <!-- Chases will be loaded dynamically -->
                             </tbody>
                         </table>
+                    </div>
+                </section>
+
+                <!-- Calendar Section -->
+                <section id="calendar" class="content-section">
+                    <h2>📆 Storm Chase Calendar</h2>
+                    <button class="btn-primary" id="addCalendarEventBtn">+ Add Calendar Event</button>
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="calendar-nav-btn" id="prevMonth">◀</button>
+                            <h3 id="currentMonth">January 2026</h3>
+                            <button class="calendar-nav-btn" id="nextMonth">▶</button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day-header">Sun</div>
+                            <div class="calendar-day-header">Mon</div>
+                            <div class="calendar-day-header">Tue</div>
+                            <div class="calendar-day-header">Wed</div>
+                            <div class="calendar-day-header">Thu</div>
+                            <div class="calendar-day-header">Fri</div>
+                            <div class="calendar-day-header">Sat</div>
+                            <div id="calendarDays"></div>
+                        </div>
+                    </div>
+                    <div class="calendar-legend">
+                        <h4>Legend:</h4>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #667eea;"></span>
+                            <span>Scheduled Chase</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #10b981;"></span>
+                            <span>Active Chase</span>
+                        </div>
+                    </div>
+                    <div class="calendar-events" id="calendarEvents">
+                        <h4>Upcoming Chases</h4>
+                        <div id="upcomingChases"></div>
                     </div>
                 </section>
 
                 <!-- Bookings Section -->
                 <section id="bookings" class="content-section">
                     <h2>📅 Customer Bookings</h2>
-                    <input type="text" class="search-bar" placeholder="🔍 Search bookings...">
+                    <input type="text" class="search-bar" id="bookingSearch" placeholder="🔍 Search bookings...">
                     <div class="table-container">
                         <table class="data-table">
                             <thead>
@@ -175,27 +190,8 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>John Smith</td>
-                                    <td>john@email.com</td>
-                                    <td>May 15, 2026</td>
-                                    <td><span class="badge badge-pending">Pending</span></td>
-                                    <td>
-                                        <button class="btn-small">Approve</button>
-                                        <button class="btn-small btn-danger">Decline</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sarah Johnson</td>
-                                    <td>sarah@email.com</td>
-                                    <td>May 20, 2026</td>
-                                    <td><span class="badge badge-confirmed">Confirmed</span></td>
-                                    <td>
-                                        <button class="btn-small">View</button>
-                                        <button class="btn-small btn-danger">Cancel</button>
-                                    </td>
-                                </tr>
+                            <tbody id="bookingsTableBody">
+                                <!-- Bookings will be loaded dynamically -->
                             </tbody>
                         </table>
                     </div>
@@ -249,6 +245,31 @@
                             <button class="btn-small">Reply</button>
                         </div>
                     </div>
+                </section>
+
+                <!-- User Approvals Section -->
+                <section id="users" class="content-section">
+                    <h2>👥 User Account Approvals</h2>
+                    <div class="approval-stats">
+                        <div class="approval-stat">
+                            <span class="stat-number" id="pendingCount">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                        <div class="approval-stat">
+                            <span class="stat-number" id="approvedCount">0</span>
+                            <span class="stat-label">Approved</span>
+                        </div>
+                        <div class="approval-stat">
+                            <span class="stat-number" id="rejectedCount">0</span>
+                            <span class="stat-label">Rejected</span>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">⏳ Pending Approvals</h3>
+                    <div id="pendingUsersList"></div>
+                    
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">✓ Approved Users</h3>
+                    <div id="approvedUsersList"></div>
                 </section>
 
                 <!-- Settings Section -->
@@ -330,8 +351,86 @@
         </div>
     </div>
 
+    <!-- Calendar Event Modal -->
+    <div id="calendarEventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📅 Add Calendar Event</h3>
+                <span class="modal-close" id="closeCalendarModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="calendarEventForm">
+                    <div class="form-group">
+                        <label>Event Title</label>
+                        <input type="text" id="eventTitle" class="form-input" placeholder="e.g., Storm Chase - Oklahoma" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Month</label>
+                            <select id="eventMonth" class="form-input" required>
+                                <option value="0">January</option>
+                                <option value="1">February</option>
+                                <option value="2">March</option>
+                                <option value="3">April</option>
+                                <option value="4">May</option>
+                                <option value="5">June</option>
+                                <option value="6">July</option>
+                                <option value="7">August</option>
+                                <option value="8">September</option>
+                                <option value="9">October</option>
+                                <option value="10">November</option>
+                                <option value="11">December</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Day</label>
+                            <input type="number" id="eventDay" class="form-input" min="1" max="31" placeholder="15" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input type="number" id="eventYear" class="form-input" min="2024" max="2030" placeholder="2026" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" id="eventTime" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="eventLocation" class="form-input" placeholder="e.g., Oklahoma City, OK" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="eventStatus" class="form-input" required>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Active">Active</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Number of Participants</label>
+                        <input type="number" id="eventParticipants" class="form-input" min="0" placeholder="0" value="0">
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="submit" class="btn-primary">Save Event</button>
+                        <button type="button" class="btn-secondary" id="cancelCalendarEvent">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="gallery-data.js"></script>
     <script src="blog-data.js"></script>
+    <script src="chase-data.js"></script>
+    <script src="booking-data.js"></script>
     <script src="staff-panel.js"></script>
     <script src="auth-check.js"></script>
 </body>

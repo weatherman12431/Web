@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Test Account</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .info {
+            background: #f0f0f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .info h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .credential {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .credential:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: 600;
+            color: #666;
+        }
+        .value {
+            color: #333;
+            font-family: monospace;
+            background: #e0e0e0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .success {
+            background: #10b981;
+            padding: 1rem;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+        .success.show {
+            display: block;
+        }
+        a {
+            display: block;
+            text-align: center;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌪️ Create Test Account</h1>
+        
+        <div class="info">
+            <h3>Default Accounts (Already Work)</h3>
+            <div class="credential">
+                <span class="label">Admin:</span>
+                <span class="value">admin / storm2026</span>
+            </div>
+            <div class="credential">
+                <span class="label">Staff:</span>
+                <span class="value">staff / razorback2026</span>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>Test Account to Create</h3>
+            <div class="credential">
+                <span class="label">Username:</span>
+                <span class="value">testuser</span>
+            </div>
+            <div class="credential">
+                <span class="label">Password:</span>
+                <span class="value">test123</span>
+            </div>
+            <div class="credential">
+                <span class="label">Email:</span>
+                <span class="value">test@example.com</span>
+            </div>
+            <div class="credential">
+                <span class="label">Role:</span>
+                <span class="value">Storm Chaser</span>
+            </div>
+        </div>
+        
+        <button onclick="createTestAccount()">Create Test Account</button>
+        
+        <div class="success" id="successMessage">
+            ✓ Test account created successfully!<br>
+            You can now login with:<br>
+            <strong>testuser / test123</strong>
+        </div>
+        
+        <a href="login.html">Go to Login Page</a>
+        <a href="signup.html">Go to Signup Page</a>
+    </div>
+    
+    <script>
+        function createTestAccount() {
+            // Get existing users or create empty object
+            const existingUsers = JSON.parse(localStorage.getItem('staffUsers') || '{}');
+            
+            // Add test account
+            existingUsers['testuser'] = {
+                password: 'test123',
+                email: 'test@example.com',
+                role: 'chaser',
+                registrationCode: 'STORM2026',
+                accessLevel: 'staff',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('staffUsers', JSON.stringify(existingUsers));
+            
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Change button text
+            event.target.textContent = 'Account Created!';
+            event.target.style.background = '#10b981';
+            event.target.disabled = true;
+        }
+    </script>
+</body>
+</html>

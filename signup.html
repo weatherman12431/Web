@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Staff Signup - Razorback Storm Chasing</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-background">
+            <div class="particles" id="particles"></div>
+        </div>
+        
+        <div class="signup-box">
+            <div class="signup-header">
+                <div class="logo-container">
+                    <div class="logo-glow"></div>
+                    <div class="logo">🌪️</div>
+                </div>
+                <h1>Join Our Team</h1>
+                <p>Create your staff account</p>
+            </div>
+            
+            <form class="signup-form" id="signupForm">
+                <div class="form-group">
+                    <label for="registrationCode">
+                        <span class="icon">🔑</span>
+                        Registration Code
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="registrationCode" 
+                            placeholder="Enter registration code"
+                            required
+                        >
+                        <div class="input-underline"></div>
+                    </div>
+                    <small class="help-text">Contact admin for registration code</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">
+                        <span class="icon">👤</span>
+                        Username
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="username" 
+                            placeholder="Choose a username"
+                            required
+                            minlength="3"
+                        >
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">
+                        <span class="icon">📧</span>
+                        Email
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            placeholder="Enter your email"
+                            required
+                        >
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">
+                        <span class="icon">🔒</span>
+                        Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="Create a password"
+                            required
+                            minlength="6"
+                        >
+                        <span class="toggle-password" id="togglePassword">👁️</span>
+                        <div class="input-underline"></div>
+                    </div>
+                    <small class="help-text">Minimum 6 characters</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        <span class="icon">🔒</span>
+                        Confirm Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            placeholder="Confirm your password"
+                            required
+                            minlength="6"
+                        >
+                        <span class="toggle-password-confirm" id="togglePasswordConfirm">👁️</span>
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">
+                        <span class="icon">👔</span>
+                        Role
+                    </label>
+                    <div class="input-wrapper">
+                        <select id="role" required>
+                            <option value="">Select your role</option>
+                            <option value="staff">Staff Member</option>
+                            <option value="chaser">Storm Chaser</option>
+                            <option value="photographer">Photographer</option>
+                            <option value="meteorologist">Meteorologist</option>
+                            <option value="videographer">Videographer</option>
+                        </select>
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="signup-btn" id="signupBtn">
+                    <span>Create Account</span>
+                    <span class="arrow">→</span>
+                </button>
+                
+                <div class="message" id="message"></div>
+            </form>
+            
+            <div class="signup-footer">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+                <a href="index.html" class="back-link">
+                    <span>←</span>
+                    <span>Back to Website</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="signup.js"></script>
+</body>
+</html>

@@ -76,8 +76,42 @@ loginForm.addEventListener('submit', (e) => {
     
     // Simulate authentication delay
     setTimeout(() => {
-        // Check credentials
+        let isValid = false;
+        let isPending = false;
+        
+        // Check default credentials
         if (validCredentials[username] && validCredentials[username] === password) {
+            isValid = true;
+        } else {
+            // Check custom registered users
+            const customUsers = JSON.parse(localStorage.getItem('staffUsers') || '{}');
+            if (customUsers[username] && customUsers[username].password === password) {
+                // Check if account is approved
+                if (customUsers[username].status === 'pending') {
+                    isPending = true;
+                } else if (customUsers[username].status === 'approved') {
+                    isValid = true;
+                }
+            }
+        }
+        
+        if (isPending) {
+            // Account pending approval
+            loginBtn.classList.remove('loading');
+            loginBtn.querySelector('span').textContent = 'Login to Dashboard';
+            
+            errorMessage.style.color = '#f59e0b';
+            errorMessage.style.background = 'linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%)';
+            errorMessage.style.border = '2px solid rgba(245, 158, 11, 0.3)';
+            errorMessage.textContent = '⏳ Your account is pending admin approval. Please wait for approval to login.';
+            errorMessage.classList.add('show');
+            
+            // Shake the form
+            loginForm.style.animation = 'shake 0.5s';
+            setTimeout(() => {
+                loginForm.style.animation = '';
+            }, 500);
+        } else if (isValid) {
             // Success
             loginBtn.classList.remove('loading');
             loginBtn.classList.add('success');
@@ -128,6 +162,14 @@ window.addEventListener('DOMContentLoaded', () => {
     if (isLoggedIn === 'true') {
         window.location.href = 'staff-panel.html';
     }
+    
+    // Pre-fill username if coming from signup
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    if (username) {
+        document.getElementById('username').value = decodeURIComponent(username);
+        document.getElementById('password').focus();
+    }
 });
 
 // Forgot password handler
@@ -155,3 +197,102 @@ inputs.forEach(input => {
         input.parentElement.style.transform = 'scale(1)';
     });
 });
+
+
+// Signup Modal functionality
+const signupModal = document.getElementById('signupModal');
+const showSignupBtn = document.getElementById('showSignup');
+const closeSignupBtn = document.getElementById('closeSignup');
+const signupForm = document.getElementById('signupForm');
+const signupMessage = document.getElementById('signupMessage');
+
+// Show signup modal
+showSignupBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    signupModal.classList.add('show');
+});
+
+// Close signup modal
+closeSignupBtn?.addEventListener('click', () => {
+    signupModal.classList.remove('show');
+    signupForm.reset();
+    signupMessage.classList.remove('show');
+});
+
+// Close modal when clicking outside
+signupModal?.addEventListener('click', (e) => {
+    if (e.target === signupModal) {
+        signupModal.classList.remove('show');
+        signupForm.reset();
+        signupMessage.classList.remove('show');
+    }
+});
+
+// Handle signup form submission
+signupForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const username = document.getElementById('signupUsername').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
+    const role = document.getElementById('signupRole').value;
+    
+    // Clear previous messages
+    signupMessage.classList.remove('show', 'success', 'error');
+    
+    // Validation
+    if (username.length < 3) {
+        showSignupMessage('Username must be at least 3 characters long.', 'error');
+        return;
+    }
+    
+    if (password.length < 6) {
+        showSignupMessage('Password must be at least 6 characters long.', 'error');
+        return;
+    }
+    
+    if (password !== passwordConfirm) {
+        showSignupMessage('Passwords do not match!', 'error');
+        return;
+    }
+    
+    if (!role) {
+        showSignupMessage('Please select a role.', 'error');
+        return;
+    }
+    
+    // Check if username already exists
+    const existingUsers = JSON.parse(localStorage.getItem('staffUsers') || '{}');
+    if (existingUsers[username]) {
+        showSignupMessage('Username already exists. Please choose another.', 'error');
+        return;
+    }
+    
+    // Save new user
+    existingUsers[username] = {
+        password: password,
+        email: email,
+        role: role,
+        createdAt: new Date().toISOString()
+    };
+    localStorage.setItem('staffUsers', JSON.stringify(existingUsers));
+    
+    // Show success message
+    showSignupMessage('✓ Account created successfully! You can now login.', 'success');
+    
+    // Reset form and close modal after 2 seconds
+    setTimeout(() => {
+        signupModal.classList.remove('show');
+        signupForm.reset();
+        signupMessage.classList.remove('show');
+        
+        // Pre-fill username in login form
+        document.getElementById('username').value = username;
+    }, 2000);
+});
+
+function showSignupMessage(message, type) {
+    signupMessage.textContent = message;
+    signupMessage.classList.add('show', type);
+}

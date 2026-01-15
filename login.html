@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Staff Login - Razorback Storm Chasing</title>
     <link rel="stylesheet" href="login.css">
 </head>
@@ -76,6 +78,10 @@
                 </button>
                 
                 <div class="error-message" id="errorMessage"></div>
+                
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                </div>
             </form>
             
             <div class="login-footer">
@@ -84,6 +90,93 @@
                     <span>Back to Website</span>
                 </a>
             </div>
+        </div>
+    </div>
+    
+    <!-- Signup Modal -->
+    <div id="signupModal" class="signup-modal">
+        <div class="signup-modal-content">
+            <div class="signup-header">
+                <h2>🌪️ Create Staff Account</h2>
+                <span class="close-signup" id="closeSignup">&times;</span>
+            </div>
+            <form class="signup-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupUsername">
+                        <span class="icon">👤</span>
+                        Username
+                    </label>
+                    <input 
+                        type="text" 
+                        id="signupUsername" 
+                        placeholder="Choose a username"
+                        required
+                        minlength="3"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupEmail">
+                        <span class="icon">📧</span>
+                        Email
+                    </label>
+                    <input 
+                        type="email" 
+                        id="signupEmail" 
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">
+                        <span class="icon">🔒</span>
+                        Password
+                    </label>
+                    <input 
+                        type="password" 
+                        id="signupPassword" 
+                        placeholder="Create a password"
+                        required
+                        minlength="6"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPasswordConfirm">
+                        <span class="icon">🔒</span>
+                        Confirm Password
+                    </label>
+                    <input 
+                        type="password" 
+                        id="signupPasswordConfirm" 
+                        placeholder="Confirm your password"
+                        required
+                        minlength="6"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupRole">
+                        <span class="icon">👔</span>
+                        Role
+                    </label>
+                    <select id="signupRole" required>
+                        <option value="">Select your role</option>
+                        <option value="staff">Staff Member</option>
+                        <option value="chaser">Storm Chaser</option>
+                        <option value="photographer">Photographer</option>
+                        <option value="meteorologist">Meteorologist</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="signup-btn">
+                    <span>Create Account</span>
+                    <span class="arrow">→</span>
+                </button>
+                
+                <div class="signup-message" id="signupMessage"></div>
+            </form>
         </div>
     </div>
     
